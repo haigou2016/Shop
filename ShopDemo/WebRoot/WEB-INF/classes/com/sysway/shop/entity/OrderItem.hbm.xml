@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.sysway.shop.entity">
+	<class name="OrderItem" table="orderItem">
+		<id name="itemid">
+			<generator class="native"/>
+		</id>
+		<property name="count"/>
+		<property name="subtotal"/>
+		<!-- 本类与Product的多对一关系 -->
+		<many-to-one name="product" class="Product" column="pid"></many-to-one>
+		<!-- 本类与Order的多对一关系 -->
+		<many-to-one name="order" class="Order" column="oid"></many-to-one>
+	</class>
+</hibernate-mapping>

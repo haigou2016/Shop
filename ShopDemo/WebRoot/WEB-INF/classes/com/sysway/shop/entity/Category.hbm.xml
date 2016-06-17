@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.sysway.shop.entity">
+	<class name="Category" table="category">
+		<id name="cid">
+			<generator class="native"/>
+		</id>
+		<property name="cname"/>
+		<!-- 本类与CategorySecond的一对多关系 -->
+		<set name="categorySeconds" lazy="false" order-by="csid">
+			<key column="cid"/>
+			<one-to-many class="CategorySecond"/>
+		</set>
+	</class>
+</hibernate-mapping>

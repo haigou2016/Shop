@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<!-- 配置为开发模式 -->
+    <constant name="struts.devMode" value="true" />
+    <!-- 把扩展名配置为action -->
+    <constant name="struts.action.extension" value="action" />
+    <!-- 把主题配置为simple -->
+    <constant name="struts.ui.theme" value="simple" />
+    <package name="default" namespace="/" extends="json-default">
+        <global-results>
+          <result name="msg">/WEB-INF/jsp/msg.jsp</result>
+           <result name="toLogin">/WEB-INF/jsp/login.jsp</result>
+        </global-results>
+
+	    <action name="home_*" class="homeAction" method="{1}">
+	      <result name="index">/WEB-INF/jsp/index.jsp</result>
+	    </action>
+       <!--用户 -->
+       <action name="user_*" class="userAction" method="{1}">
+         <result name="toRegister" >/WEB-INF/jsp/user/user_register.jsp</result>
+         <result type="json">
+          <param name="root">ajaxmap</param>
+         </result>
+         <result name="input">/WEB-INF/jsp/user/user_register.jsp</result>
+         <result name="toIndex" type="redirectAction">home_index</result>
+         <result name="logout" type="redirectAction">home_index</result>
+       </action>
+       <!-- 商品 -->
+       <action name="product_*" class="productAction" method="{1}">
+          <result name="productInfo">/WEB-INF/jsp/product/productInfo.jsp</result>
+          <result name="product_list">/WEB-INF/jsp/product/productList.jsp</result>
+       </action>
+       
+       <!-- 购物车 -->
+       <action name="cart_*" class="cartAction" method="{1}">
+         <result name="cart_add">/WEB-INF/jsp/cart/cart.jsp</result>
+         <result name="cart_delete">/WEB-INF/jsp/cart/cart.jsp</result>
+         <result name="cart_clear">/WEB-INF/jsp/cart/cart.jsp</result>
+         <result name="myCart">/WEB-INF/jsp/cart/cart.jsp</result>
+       </action>
+       
+       <!-- 订单 -->
+       <action name="order_*" class="orderAction" method="{1}">
+         <result name="to_submit">/WEB-INF/jsp/order/orderInfo.jsp</result>
+       </action>
+       <action name="search_*" class="searchAction" method="{1}">
+          <result name="success" type="json">
+             <param name="root">result</param>
+          </result>
+       </action>
+    </package>
+
+    <!-- Add packages here -->
+
+</struts>

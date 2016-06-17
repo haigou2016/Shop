@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping package="com.sysway.shop.entity">
+	<class name="Order" table="orders">
+		<id name="oid">
+			<generator class="native"/>
+		</id>
+		<property name="total"/>
+		<property name="ordertime"/>
+		<property name="state"/>
+		<property name="name"/>
+		<property name="phone"/>
+		<property name="addr"/>
+		<!-- 本类与User的多对一关系 -->
+		<many-to-one name="user" class="User" column="uid"></many-to-one>
+		<!-- 本类与OrderItem的一对多关系 -->
+		<set name="orderItems" cascade="save-update">
+			<key column="oid"/>
+			<one-to-many class="OrderItem"/>
+		</set>
+	</class>
+</hibernate-mapping>

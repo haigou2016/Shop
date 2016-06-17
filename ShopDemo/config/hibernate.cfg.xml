@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+<session-factory>
+
+	<!-- Database connection settings -->
+	<!--  
+		<property name="connection.driver_class">com.jdbc.mysql.Driver</property>
+		<property name="connection.url">jdbc:mysql://192.9.200.121:3306/world</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">root</property>
+		<property name="connection.pool_size">1</property>  -->
+	<!-- SQL dialect -->
+	<property name="dialect">
+		org.hibernate.dialect.MySQL5InnoDBDialect
+	</property>
+	<!-- Disable the second-level cache  -->
+	<property name="cache.provider_class">
+		org.hibernate.cache.NoCacheProvider
+	</property>
+	<!--  
+		<property name="hibernate.connection.release_mode">
+		after_transaction
+		</property>
+	-->
+	<!-- Echo all executed SQL to stdout -->
+	<property name="show_sql">true</property>
+	<!-- Drop and re-create the database schema on startup -->
+	<property name="hbm2ddl.auto">update</property>
+	<mapping resource="com/sysway/shop/entity/User.hbm.xml" />
+	<mapping resource="com/sysway/shop/entity/Category.hbm.xml" />
+	<mapping resource="com/sysway/shop/entity/Product.hbm.xml" />
+	<mapping resource="com/sysway/shop/entity/CategorySecond.hbm.xml" />
+	<mapping resource="com/sysway/shop/entity/Order.hbm.xml" />
+	<mapping resource="com/sysway/shop/entity/OrderItem.hbm.xml" />
+</session-factory>
+</hibernate-configuration>
